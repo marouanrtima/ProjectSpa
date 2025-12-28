@@ -1,10 +1,72 @@
-import { useEffect, useState } from 'react';
 import { ArrowLeft, Clock, DollarSign } from 'lucide-react';
-import { supabase } from '../lib/supabase';
-import type { Database } from '../lib/database.types';
 
-type Service = Database['public']['Tables']['services']['Row'];
-type ServiceItem = Database['public']['Tables']['service_items']['Row'];
+interface Service {
+  id: string;
+  name: string;
+  description: string;
+  image_url: string;
+  slug: string;
+}
+
+interface ServiceItem {
+  id: string;
+  service_id: string;
+  name: string;
+  description: string | null;
+  duration: string | null;
+  price: number | null;
+}
+
+const servicesData: Record<string, { service: Service; items: ServiceItem[] }> = {
+  'massage-therapy': {
+    service: {
+      id: '1',
+      name: 'Massage Therapy',
+      description: 'From Swedish to deep tissue, our expert therapists tailor each session to your needs.',
+      image_url: 'https://images.pexels.com/photos/5240677/pexels-photo-5240677.jpeg?auto=compress&cs=tinysrgb&w=1920',
+      slug: 'massage-therapy',
+    },
+    items: [
+      { id: '1', service_id: '1', name: 'Swedish Massage', description: 'Classic relaxation massage with long, flowing strokes.', duration: '60 minutes', price: 95 },
+      { id: '2', service_id: '1', name: 'Deep Tissue Massage', description: 'Targets deeper muscle layers to release chronic tension.', duration: '75 minutes', price: 120 },
+      { id: '3', service_id: '1', name: 'Hot Stone Massage', description: 'Heated stones placed on key points for deep relaxation.', duration: '90 minutes', price: 140 },
+      { id: '4', service_id: '1', name: 'Sports Massage', description: 'Designed for athletes to prevent and treat injuries.', duration: '60 minutes', price: 110 },
+      { id: '5', service_id: '1', name: 'Prenatal Massage', description: 'Gentle massage designed for expecting mothers.', duration: '60 minutes', price: 100 },
+    ],
+  },
+  'facial-treatments': {
+    service: {
+      id: '2',
+      name: 'Facial Treatments',
+      description: 'Advanced skincare treatments to cleanse, exfoliate, and revitalize your complexion.',
+      image_url: 'https://images.pexels.com/photos/3985329/pexels-photo-3985329.jpeg?auto=compress&cs=tinysrgb&w=1920',
+      slug: 'facial-treatments',
+    },
+    items: [
+      { id: '6', service_id: '2', name: 'Classic Facial', description: 'Deep cleansing facial for all skin types.', duration: '60 minutes', price: 85 },
+      { id: '7', service_id: '2', name: 'Anti-Aging Facial', description: 'Targets fine lines and wrinkles for youthful skin.', duration: '75 minutes', price: 130 },
+      { id: '8', service_id: '2', name: 'Hydrating Facial', description: 'Intense moisture treatment for dry skin.', duration: '60 minutes', price: 95 },
+      { id: '9', service_id: '2', name: 'Acne Treatment Facial', description: 'Specialized treatment for acne-prone skin.', duration: '60 minutes', price: 100 },
+      { id: '10', service_id: '2', name: 'Brightening Facial', description: 'Evens skin tone and adds radiance.', duration: '75 minutes', price: 115 },
+    ],
+  },
+  'body-treatments': {
+    service: {
+      id: '3',
+      name: 'Body Treatments',
+      description: 'Luxurious wraps, scrubs, and hydrotherapy to detoxify and nourish your body.',
+      image_url: 'https://images.pexels.com/photos/3865557/pexels-photo-3865557.jpeg?auto=compress&cs=tinysrgb&w=1920',
+      slug: 'body-treatments',
+    },
+    items: [
+      { id: '11', service_id: '3', name: 'Detox Body Wrap', description: 'Full body treatment to eliminate toxins.', duration: '60 minutes', price: 110 },
+      { id: '12', service_id: '3', name: 'Salt Scrub Exfoliation', description: 'Removes dead skin cells for smooth, glowing skin.', duration: '45 minutes', price: 75 },
+      { id: '13', service_id: '3', name: 'Mud Body Mask', description: 'Mineral-rich mud treatment for skin rejuvenation.', duration: '60 minutes', price: 100 },
+      { id: '14', service_id: '3', name: 'Aromatherapy Body Wrap', description: 'Essential oil infused wrap for relaxation.', duration: '75 minutes', price: 120 },
+      { id: '15', service_id: '3', name: 'Cellulite Treatment', description: 'Targeted treatment to improve skin texture.', duration: '60 minutes', price: 130 },
+    ],
+  },
+};
 
 interface ServiceDetailPageProps {
   slug: string;
@@ -12,43 +74,9 @@ interface ServiceDetailPageProps {
 }
 
 export default function ServiceDetailPage({ slug, onNavigate }: ServiceDetailPageProps) {
-  const [service, setService] = useState<Service | null>(null);
-  const [serviceItems, setServiceItems] = useState<ServiceItem[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchService() {
-      const { data: serviceData } = await supabase
-        .from('services')
-        .select('*')
-        .eq('slug', slug)
-        .maybeSingle();
-
-      if (serviceData) {
-        setService(serviceData);
-
-        const { data: itemsData } = await supabase
-          .from('service_items')
-          .select('*')
-          .eq('service_id', serviceData.id)
-          .order('created_at');
-
-        if (itemsData) setServiceItems(itemsData);
-      }
-
-      setLoading(false);
-    }
-
-    fetchService();
-  }, [slug]);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-gray-500">Loading...</p>
-      </div>
-    );
-  }
+  const data = servicesData[slug];
+  const service = data?.service || null;
+  const serviceItems = data?.items || [];
 
   if (!service) {
     return (

@@ -1,29 +1,70 @@
-import { useEffect, useState } from 'react';
 import { Gift, Check } from 'lucide-react';
-import { supabase } from '../lib/supabase';
-import type { Database } from '../lib/database.types';
 
-type Package = Database['public']['Tables']['packages']['Row'];
+interface Package {
+  id: string;
+  name: string;
+  description: string;
+  included_treatments: string;
+  duration: string;
+  image_url: string;
+}
+
+const packages: Package[] = [
+  {
+    id: '1',
+    name: 'Serenity Escape',
+    description: 'A half-day retreat including massage, facial, and body wrap for complete rejuvenation.',
+    included_treatments: 'Swedish Massage, Aromatherapy Facial, Detox Body Wrap, Herbal Tea Service',
+    duration: '4 hours',
+    image_url: 'https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg?auto=compress&cs=tinysrgb&w=800',
+  },
+  {
+    id: '2',
+    name: 'Couples Retreat',
+    description: 'Share a relaxing experience with your partner including side-by-side massages and champagne.',
+    included_treatments: 'Couples Swedish Massage, Couples Facial, Champagne Toast, Private Suite Access',
+    duration: '3 hours',
+    image_url: 'https://images.pexels.com/photos/6663364/pexels-photo-6663364.jpeg?auto=compress&cs=tinysrgb&w=800',
+  },
+  {
+    id: '3',
+    name: 'Ultimate Wellness',
+    description: 'Full-day spa experience with multiple treatments, healthy lunch, and access to all facilities.',
+    included_treatments: 'Deep Tissue Massage, Anti-Aging Facial, Salt Scrub, Detox Wrap, Healthy Lunch, Pool Access',
+    duration: '8 hours',
+    image_url: 'https://images.pexels.com/photos/3997993/pexels-photo-3997993.jpeg?auto=compress&cs=tinysrgb&w=800',
+  },
+  {
+    id: '4',
+    name: 'Stress Relief Package',
+    description: 'Designed to melt away tension with targeted therapeutic treatments.',
+    included_treatments: 'Hot Stone Massage, Scalp Massage, Aromatherapy Session, Relaxation Lounge Access',
+    duration: '2.5 hours',
+    image_url: 'https://images.pexels.com/photos/3865607/pexels-photo-3865607.jpeg?auto=compress&cs=tinysrgb&w=800',
+  },
+  {
+    id: '5',
+    name: 'Bridal Glow',
+    description: 'Look radiant on your special day with our comprehensive bridal beauty package.',
+    included_treatments: 'Hydrating Facial, Full Body Polish, Manicure, Pedicure, Hair Treatment',
+    duration: '5 hours',
+    image_url: 'https://images.pexels.com/photos/6621392/pexels-photo-6621392.jpeg?auto=compress&cs=tinysrgb&w=800',
+  },
+  {
+    id: '6',
+    name: 'Executive Reset',
+    description: 'Quick but effective treatments for busy professionals needing a midday refresh.',
+    included_treatments: 'Express Massage, Express Facial, Foot Reflexology',
+    duration: '90 minutes',
+    image_url: 'https://images.pexels.com/photos/5240677/pexels-photo-5240677.jpeg?auto=compress&cs=tinysrgb&w=800',
+  },
+];
 
 interface PackagesPageProps {
   onNavigate: (page: string) => void;
 }
 
 export default function PackagesPage({ onNavigate }: PackagesPageProps) {
-  const [packages, setPackages] = useState<Package[]>([]);
-
-  useEffect(() => {
-    async function fetchPackages() {
-      const { data } = await supabase
-        .from('packages')
-        .select('*')
-        .order('created_at');
-
-      if (data) setPackages(data);
-    }
-
-    fetchPackages();
-  }, []);
 
   return (
     <div className="min-h-screen">
