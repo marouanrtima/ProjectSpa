@@ -1,6 +1,5 @@
 import { useState, FormEvent } from 'react';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
-import { supabase } from '../lib/supabase';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -17,16 +16,12 @@ export default function ContactPage() {
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
-    const { error } = await supabase
-      .from('contact_submissions')
-      .insert([formData]);
+    // Simulate form submission delay
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    if (error) {
-      setSubmitStatus('error');
-    } else {
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', phone: '', message: '' });
-    }
+    // Always succeed for static version
+    setSubmitStatus('success');
+    setFormData({ name: '', email: '', phone: '', message: '' });
 
     setIsSubmitting(false);
   };

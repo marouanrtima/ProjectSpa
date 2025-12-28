@@ -1,30 +1,96 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Mail } from 'lucide-react';
-import { supabase } from '../lib/supabase';
-import type { Database } from '../lib/database.types';
 
-type Treatment = Database['public']['Tables']['treatments']['Row'];
+interface Treatment {
+  id: string;
+  name: string;
+  description: string;
+  duration: string;
+  category: string;
+  image_url: string;
+}
+
+const treatments: Treatment[] = [
+  {
+    id: '1',
+    name: 'Swedish Massage',
+    description: 'A classic relaxation massage using long, flowing strokes to ease tension and promote deep relaxation.',
+    duration: '60 minutes',
+    category: 'massage',
+    image_url: 'https://images.pexels.com/photos/3757952/pexels-photo-3757952.jpeg?auto=compress&cs=tinysrgb&w=800',
+  },
+  {
+    id: '2',
+    name: 'Deep Tissue Massage',
+    description: 'Targets deeper layers of muscle tissue to release chronic tension and knots.',
+    duration: '75 minutes',
+    category: 'massage',
+    image_url: 'https://images.pexels.com/photos/5240677/pexels-photo-5240677.jpeg?auto=compress&cs=tinysrgb&w=800',
+  },
+  {
+    id: '3',
+    name: 'Hot Stone Therapy',
+    description: 'Heated basalt stones placed on key points to melt away stress and promote circulation.',
+    duration: '90 minutes',
+    category: 'massage',
+    image_url: 'https://images.pexels.com/photos/3188/love-romantic-bath-candlelight.jpg?auto=compress&cs=tinysrgb&w=800',
+  },
+  {
+    id: '4',
+    name: 'Aromatherapy Facial',
+    description: 'Luxurious facial treatment using essential oils to rejuvenate and nourish your skin.',
+    duration: '75 minutes',
+    category: 'facial',
+    image_url: 'https://images.pexels.com/photos/3764013/pexels-photo-3764013.jpeg?auto=compress&cs=tinysrgb&w=800',
+  },
+  {
+    id: '5',
+    name: 'Anti-Aging Facial',
+    description: 'Advanced treatment targeting fine lines and wrinkles for a youthful, radiant complexion.',
+    duration: '90 minutes',
+    category: 'facial',
+    image_url: 'https://images.pexels.com/photos/3985329/pexels-photo-3985329.jpeg?auto=compress&cs=tinysrgb&w=800',
+  },
+  {
+    id: '6',
+    name: 'Detox Body Wrap',
+    description: 'Full body treatment to eliminate toxins and leave your skin soft and refreshed.',
+    duration: '60 minutes',
+    category: 'body',
+    image_url: 'https://images.pexels.com/photos/3865557/pexels-photo-3865557.jpeg?auto=compress&cs=tinysrgb&w=800',
+  },
+  {
+    id: '7',
+    name: 'Salt Scrub Exfoliation',
+    description: 'Invigorating body scrub to remove dead skin cells and reveal smooth, glowing skin.',
+    duration: '45 minutes',
+    category: 'body',
+    image_url: 'https://images.pexels.com/photos/6621182/pexels-photo-6621182.jpeg?auto=compress&cs=tinysrgb&w=800',
+  },
+  {
+    id: '8',
+    name: 'Reflexology',
+    description: 'Pressure point therapy focusing on feet to promote healing throughout the body.',
+    duration: '45 minutes',
+    category: 'wellness',
+    image_url: 'https://images.pexels.com/photos/5240651/pexels-photo-5240651.jpeg?auto=compress&cs=tinysrgb&w=800',
+  },
+  {
+    id: '9',
+    name: 'Meditation Session',
+    description: 'Guided meditation to calm the mind and restore inner peace.',
+    duration: '30 minutes',
+    category: 'wellness',
+    image_url: 'https://images.pexels.com/photos/3822864/pexels-photo-3822864.jpeg?auto=compress&cs=tinysrgb&w=800',
+  },
+];
 
 interface TreatmentsPageProps {
   onNavigate: (page: string) => void;
 }
 
 export default function TreatmentsPage({ onNavigate }: TreatmentsPageProps) {
-  const [treatments, setTreatments] = useState<Treatment[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-
-  useEffect(() => {
-    async function fetchTreatments() {
-      const { data } = await supabase
-        .from('treatments')
-        .select('*')
-        .order('category');
-
-      if (data) setTreatments(data);
-    }
-
-    fetchTreatments();
-  }, []);
 
   const categories = ['all', ...Array.from(new Set(treatments.map((t) => t.category)))];
   const filteredTreatments =

@@ -1,11 +1,100 @@
-import { useEffect, useState } from 'react';
 import { ArrowRight, Sparkles } from 'lucide-react';
-import { supabase } from '../lib/supabase';
-import type { Database } from '../lib/database.types';
 
-type Treatment = Database['public']['Tables']['treatments']['Row'];
-type Package = Database['public']['Tables']['packages']['Row'];
-type Service = Database['public']['Tables']['services']['Row'];
+interface Treatment {
+  id: string;
+  name: string;
+  description: string;
+  duration: string;
+  image_url: string;
+}
+
+interface Package {
+  id: string;
+  name: string;
+  description: string;
+  duration: string;
+  image_url: string;
+}
+
+interface Service {
+  id: string;
+  name: string;
+  description: string;
+  image_url: string;
+  slug: string;
+}
+
+const featuredTreatments: Treatment[] = [
+  {
+    id: '1',
+    name: 'Swedish Massage',
+    description: 'A classic relaxation massage using long, flowing strokes to ease tension and promote deep relaxation.',
+    duration: '60 minutes',
+    image_url: 'https://images.pexels.com/photos/3757952/pexels-photo-3757952.jpeg?auto=compress&cs=tinysrgb&w=800',
+  },
+  {
+    id: '2',
+    name: 'Aromatherapy Facial',
+    description: 'Luxurious facial treatment using essential oils to rejuvenate and nourish your skin.',
+    duration: '75 minutes',
+    image_url: 'https://images.pexels.com/photos/3764013/pexels-photo-3764013.jpeg?auto=compress&cs=tinysrgb&w=800',
+  },
+  {
+    id: '3',
+    name: 'Hot Stone Therapy',
+    description: 'Heated basalt stones placed on key points to melt away stress and promote circulation.',
+    duration: '90 minutes',
+    image_url: 'https://images.pexels.com/photos/3188/love-romantic-bath-candlelight.jpg?auto=compress&cs=tinysrgb&w=800',
+  },
+];
+
+const popularPackages: Package[] = [
+  {
+    id: '1',
+    name: 'Serenity Escape',
+    description: 'A half-day retreat including massage, facial, and body wrap for complete rejuvenation.',
+    duration: '4 hours',
+    image_url: 'https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg?auto=compress&cs=tinysrgb&w=800',
+  },
+  {
+    id: '2',
+    name: 'Couples Retreat',
+    description: 'Share a relaxing experience with your partner including side-by-side massages and champagne.',
+    duration: '3 hours',
+    image_url: 'https://images.pexels.com/photos/6663364/pexels-photo-6663364.jpeg?auto=compress&cs=tinysrgb&w=800',
+  },
+  {
+    id: '3',
+    name: 'Ultimate Wellness',
+    description: 'Full-day spa experience with multiple treatments, healthy lunch, and access to all facilities.',
+    duration: '8 hours',
+    image_url: 'https://images.pexels.com/photos/3997993/pexels-photo-3997993.jpeg?auto=compress&cs=tinysrgb&w=800',
+  },
+];
+
+const services: Service[] = [
+  {
+    id: '1',
+    name: 'Massage Therapy',
+    description: 'From Swedish to deep tissue, our expert therapists tailor each session to your needs.',
+    image_url: 'https://images.pexels.com/photos/5240677/pexels-photo-5240677.jpeg?auto=compress&cs=tinysrgb&w=800',
+    slug: 'massage-therapy',
+  },
+  {
+    id: '2',
+    name: 'Facial Treatments',
+    description: 'Advanced skincare treatments to cleanse, exfoliate, and revitalize your complexion.',
+    image_url: 'https://images.pexels.com/photos/3985329/pexels-photo-3985329.jpeg?auto=compress&cs=tinysrgb&w=800',
+    slug: 'facial-treatments',
+  },
+  {
+    id: '3',
+    name: 'Body Treatments',
+    description: 'Luxurious wraps, scrubs, and hydrotherapy to detoxify and nourish your body.',
+    image_url: 'https://images.pexels.com/photos/3865557/pexels-photo-3865557.jpeg?auto=compress&cs=tinysrgb&w=800',
+    slug: 'body-treatments',
+  },
+];
 
 interface HomePageProps {
   onNavigate: (page: string) => void;
@@ -13,36 +102,6 @@ interface HomePageProps {
 }
 
 export default function HomePage({ onNavigate, onNavigateService }: HomePageProps) {
-  const [featuredTreatments, setFeaturedTreatments] = useState<Treatment[]>([]);
-  const [popularPackages, setPopularPackages] = useState<Package[]>([]);
-  const [services, setServices] = useState<Service[]>([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      const { data: treatments } = await supabase
-        .from('treatments')
-        .select('*')
-        .eq('is_featured', true)
-        .limit(3);
-
-      const { data: packages } = await supabase
-        .from('packages')
-        .select('*')
-        .eq('is_popular', true)
-        .limit(3);
-
-      const { data: servicesData } = await supabase
-        .from('services')
-        .select('*')
-        .order('created_at');
-
-      if (treatments) setFeaturedTreatments(treatments);
-      if (packages) setPopularPackages(packages);
-      if (servicesData) setServices(servicesData);
-    }
-
-    fetchData();
-  }, []);
 
   return (
     <div className="min-h-screen">
