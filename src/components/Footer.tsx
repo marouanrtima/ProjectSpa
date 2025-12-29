@@ -12,8 +12,10 @@ export default function Footer({ onNavigate }: FooterProps) {
     { id: 'packages', label: 'Packages' },
     { id: 'contact', label: 'Contact' },
   ];
+  const currentYear = new Date().getFullYear();
 
   return (
+
     <footer className="bg-stone-900 text-stone-300 pt-12 pb-6">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
@@ -48,13 +50,13 @@ export default function Footer({ onNavigate }: FooterProps) {
             <h3 className="text-lg font-serif text-amber-200 mb-4">Follow Us</h3>
             <div className="flex gap-4">
               <a
-                href="#"
+                href=""
                 className="w-10 h-10 bg-stone-800 rounded-full flex items-center justify-center hover:bg-amber-800 transition-colors"
               >
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/miriclinic/" target='-black'
                 className="w-10 h-10 bg-stone-800 rounded-full flex items-center justify-center hover:bg-amber-800 transition-colors"
               >
                 <Instagram className="w-5 h-5" />
@@ -78,7 +80,7 @@ export default function Footer({ onNavigate }: FooterProps) {
         </div>
 
         <div className="border-t border-stone-800 pt-6 text-center text-sm">
-          <p>&copy; 2024 Serenity Spa. All rights reserved.</p>
+          <p>&copy; {currentYear} Serenity Spa. All rights reserved.</p>
         </div>
       </div>
     </footer>

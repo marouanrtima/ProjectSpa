@@ -1,4 +1,5 @@
 import { ArrowRight, Sparkles } from 'lucide-react';
+import ImageMiriClinic from '../images/MiriClinic.jpeg'
 
 interface Treatment {
   id: string;
@@ -25,24 +26,25 @@ interface Service {
 }
 
 const featuredTreatments: Treatment[] = [
+
   {
     id: '1',
-    name: 'Swedish Massage',
-    description: 'A classic relaxation massage using long, flowing strokes to ease tension and promote deep relaxation.',
+    name: 'Massage Suédois',
+    description: 'Un massage classique de relaxation utilisant de longs mouvements fluides pour soulager les tensions et favoriser une détente profonde.',
     duration: '60 minutes',
     image_url: 'https://images.pexels.com/photos/3757952/pexels-photo-3757952.jpeg?auto=compress&cs=tinysrgb&w=800',
   },
   {
     id: '2',
-    name: 'Aromatherapy Facial',
-    description: 'Luxurious facial treatment using essential oils to rejuvenate and nourish your skin.',
+    name: 'Soin du visage à l\'aromathérapie',
+    description: 'Soin du visage luxueux utilisant des huiles essentielles pour rajeunir et nourrir votre peau.',
     duration: '75 minutes',
     image_url: 'https://images.pexels.com/photos/3764013/pexels-photo-3764013.jpeg?auto=compress&cs=tinysrgb&w=800',
   },
   {
     id: '3',
-    name: 'Hot Stone Therapy',
-    description: 'Heated basalt stones placed on key points to melt away stress and promote circulation.',
+    name: 'Thérapie aux pierres chaudes',
+    description: 'Des pierres basaltiques chauffées placées sur des points clés pour dissoudre le stress et favoriser la circulation.',
     duration: '90 minutes',
     image_url: 'https://images.pexels.com/photos/3188/love-romantic-bath-candlelight.jpg?auto=compress&cs=tinysrgb&w=800',
   },
@@ -72,28 +74,28 @@ const popularPackages: Package[] = [
   },
 ];
 
-const services: Service[] = [
-  {
-    id: '1',
-    name: 'Massage Therapy',
-    description: 'From Swedish to deep tissue, our expert therapists tailor each session to your needs.',
-    image_url: 'https://images.pexels.com/photos/5240677/pexels-photo-5240677.jpeg?auto=compress&cs=tinysrgb&w=800',
-    slug: 'massage-therapy',
-  },
-  {
-    id: '2',
-    name: 'Facial Treatments',
-    description: 'Advanced skincare treatments to cleanse, exfoliate, and revitalize your complexion.',
-    image_url: 'https://images.pexels.com/photos/3985329/pexels-photo-3985329.jpeg?auto=compress&cs=tinysrgb&w=800',
-    slug: 'facial-treatments',
-  },
-  {
-    id: '3',
-    name: 'Body Treatments',
-    description: 'Luxurious wraps, scrubs, and hydrotherapy to detoxify and nourish your body.',
-    image_url: 'https://images.pexels.com/photos/3865557/pexels-photo-3865557.jpeg?auto=compress&cs=tinysrgb&w=800',
-    slug: 'body-treatments',
-  },
+const services: Service[] = [{
+  id: '1',
+  name: 'Massage Thérapeutique',
+  description: 'Du massage suédois au massage en profondeur, nos thérapeutes experts adaptent chaque séance à vos besoins.',
+  image_url: 'https://images.pexels.com/photos/5240677/pexels-photo-5240677.jpeg?auto=compress&cs=tinysrgb&w=800',
+  slug: 'massage-therapy',
+},
+
+{
+  id: '2',
+  name: 'Soins du Visage',
+  description: 'Soins de peau avancés pour nettoyer, exfolier et revitaliser votre teint.',
+  image_url: 'https://images.pexels.com/photos/3985329/pexels-photo-3985329.jpeg?auto=compress&cs=tinysrgb&w=800',
+  slug: 'facial-treatments',
+},
+{
+  id: '3',
+  name: 'Soins du Corps',
+  description: 'Enveloppements luxueux, gommages et hydrothérapie pour détoxifier et nourrir votre corps.',
+  image_url: 'https://i.pinimg.com/736x/05/20/34/052034d4e91e0215a30b4b900792cb56.jpg?auto=compress&cs=tinysrgb&w=800',
+  slug: 'body-treatments',
+},
 ];
 
 interface HomePageProps {
@@ -113,15 +115,15 @@ export default function HomePage({ onNavigate, onNavigateService }: HomePageProp
         }}
       >
         <div className="text-center text-white px-4">
-          <h1 className="text-5xl md:text-7xl font-serif mb-6">Redefining Relaxation</h1>
+          <h1 className="text-5xl md:text-7xl font-serif mb-6"> Redéfinir la détente</h1>
           <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto leading-relaxed">
-            Immerse yourself in a sanctuary of tranquility where every detail is crafted for your wellbeing
+            Plongez dans un sanctuaire de tranquillité où chaque détail est pensé pour votre bien-être
           </p>
           <button
             onClick={() => onNavigate('contact')}
             className="bg-amber-700 text-white px-8 py-4 rounded-md hover:bg-amber-800 transition-all text-lg font-medium shadow-lg hover:shadow-xl"
           >
-            Book an Appointment
+            Réserver un rendez-vous
           </button>
         </div>
       </section>
@@ -129,9 +131,9 @@ export default function HomePage({ onNavigate, onNavigateService }: HomePageProp
       <section className="py-20 bg-stone-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-serif text-amber-900 mb-4">Featured Treatments</h2>
+            <h2 className="text-4xl font-serif text-amber-900 mb-4">Notre Philosophie du Bien-être</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Discover our most beloved treatments, carefully designed to restore balance and harmony
+              Chez Serenity Spa, nous croyons que le véritable bien-être naît de l'harmonie parfaite entre l'esprit, le corps et l'âme. Notre approche holistique combine les traditions anciennes de guérison avec des techniques thérapeutiques modernes.
             </p>
           </div>
 
@@ -158,7 +160,7 @@ export default function HomePage({ onNavigate, onNavigateService }: HomePageProp
               onClick={() => onNavigate('treatments')}
               className="inline-flex items-center gap-2 text-amber-800 font-medium hover:text-amber-900 transition-colors"
             >
-              View All Treatments
+              Voir tous les soins
               <ArrowRight className="w-5 h-5" />
             </button>
           </div>
@@ -169,28 +171,26 @@ export default function HomePage({ onNavigate, onNavigateService }: HomePageProp
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-serif text-amber-900 mb-6">Our Wellness Philosophy</h2>
+              <h2 className="text-4xl font-serif text-amber-900 mb-6">Notre Philosophie du Bien-être</h2>
               <p className="text-gray-700 leading-relaxed mb-4">
-                At Serenity Spa, we believe that true wellness emerges from the perfect harmony of mind, body, and spirit.
-                Our holistic approach combines ancient healing traditions with modern therapeutic techniques.
+                Chez Serenity Spa, nous croyons que le véritable bien-être naît de l'harmonie parfaite entre l'esprit, le corps et l'âme. Notre approche holistique combine les traditions anciennes de guérison avec des techniques thérapeutiques modernes.
               </p>
               <p className="text-gray-700 leading-relaxed mb-6">
-                Every treatment is thoughtfully designed to not only relax your body but to rejuvenate your entire being,
-                leaving you refreshed and renewed.
+                Chaque soin est conçu avec soin non seulement pour détendre votre corps, mais aussi pour revitaliser votre être tout entier,
+                vous laissant rafraîchi et renouvelé.
               </p>
               <button
                 onClick={() => onNavigate('about')}
                 className="inline-flex items-center gap-2 bg-amber-800 text-white px-6 py-3 rounded-md hover:bg-amber-900 transition-colors"
               >
-                Discover More
+                En savoir plus
                 <ArrowRight className="w-5 h-5" />
               </button>
             </div>
             <div
               className="h-96 bg-cover bg-center rounded-lg shadow-lg"
               style={{
-                backgroundImage:
-                  'url(https://images.pexels.com/photos/3997386/pexels-photo-3997386.jpeg?auto=compress&cs=tinysrgb&w=800)',
+                backgroundImage: `url(${ImageMiriClinic})`,
               }}
             />
           </div>
@@ -200,9 +200,9 @@ export default function HomePage({ onNavigate, onNavigateService }: HomePageProp
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-serif text-amber-900 mb-4">Our Services</h2>
+            <h2 className="text-4xl font-serif text-amber-900 mb-4">Nos Services</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Explore our comprehensive range of professional spa and wellness treatments
+              Découvrez notre large gamme de soins professionnels de spa et de bien-être
             </p>
           </div>
 
@@ -223,7 +223,7 @@ export default function HomePage({ onNavigate, onNavigateService }: HomePageProp
                   </h3>
                   <p className="text-gray-600 leading-relaxed mb-4">{service.description}</p>
                   <div className="inline-flex items-center gap-2 text-amber-800 font-medium group-hover:gap-3 transition-all">
-                    View Details <ArrowRight className="w-5 h-5" />
+                    Voir les détails  <ArrowRight className="w-5 h-5" />
                   </div>
                 </div>
               </button>

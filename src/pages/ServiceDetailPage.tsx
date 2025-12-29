@@ -21,8 +21,8 @@ const servicesData: Record<string, { service: Service; items: ServiceItem[] }> =
   'massage-therapy': {
     service: {
       id: '1',
-      name: 'Massage Therapy',
-      description: 'From Swedish to deep tissue, our expert therapists tailor each session to your needs.',
+      name: 'Massage Thérapeutique',
+      description: 'Du massage suédois au massage en profondeur, nos thérapeutes experts adaptent chaque séance à vos besoins.',
       image_url: 'https://images.pexels.com/photos/5240677/pexels-photo-5240677.jpeg?auto=compress&cs=tinysrgb&w=1920',
       slug: 'massage-therapy',
     },

@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Flower2, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import Logo from '../images/LogoMiri.png'
 
 interface HeaderProps {
   currentPage: string;
@@ -10,11 +11,11 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About Us' },
-    { id: 'treatments', label: 'Treatments' },
-    { id: 'packages', label: 'Packages' },
-    { id: 'contact', label: 'Contact' },
+    { id: 'home', label: 'Accueil' },
+    { id: 'about', label: 'À propos de nous' },
+    { id: 'treatments', label: 'Soins' },
+    { id: 'packages', label: 'Forfaits' },
+    { id: 'contact', label: 'Contact' }
   ];
 
   const handleNavigate = (page: string) => {
@@ -30,8 +31,9 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
             onClick={() => handleNavigate('home')}
             className="flex items-center gap-2 text-2xl font-serif text-amber-900"
           >
-            <Flower2 className="w-8 h-8 text-amber-700" />
-            <span className="hidden sm:inline">Serenity Spa</span>
+            <a className="Logo">
+              <img src={Logo} alt="Logo" />
+            </a>
           </button>
 
           <nav className="hidden md:flex items-center gap-8">
@@ -39,11 +41,10 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
               <button
                 key={item.id}
                 onClick={() => handleNavigate(item.id)}
-                className={`font-medium transition-colors ${
-                  currentPage === item.id
-                    ? 'text-amber-800 border-b-2 border-amber-800'
-                    : 'text-gray-700 hover:text-amber-800'
-                }`}
+                className={`font-medium transition-colors ${currentPage === item.id
+                  ? 'text-amber-800 border-b-2 border-amber-800'
+                  : 'text-gray-700 hover:text-amber-800'
+                  }`}
               >
                 {item.label}
               </button>
@@ -54,7 +55,7 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
             onClick={() => handleNavigate('contact')}
             className="bg-amber-800 text-white px-6 py-2 rounded-md hover:bg-amber-900 transition-colors font-medium hidden sm:block"
           >
-            Book Now
+            Réserver maintenant
           </button>
 
           <button
@@ -71,9 +72,8 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
               <button
                 key={item.id}
                 onClick={() => handleNavigate(item.id)}
-                className={`text-left font-medium transition-colors py-2 ${
-                  currentPage === item.id ? 'text-amber-800' : 'text-gray-700 hover:text-amber-800'
-                }`}
+                className={`text-left font-medium transition-colors py-2 ${currentPage === item.id ? 'text-amber-800' : 'text-gray-700 hover:text-amber-800'
+                  }`}
               >
                 {item.label}
               </button>
