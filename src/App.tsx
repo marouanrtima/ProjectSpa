@@ -7,6 +7,7 @@ import TreatmentsPage from './pages/TreatmentsPage';
 import PackagesPage from './pages/PackagesPage';
 import ContactPage from './pages/ContactPage';
 import ServiceDetailPage from './pages/ServiceDetailPage';
+import { WhatsAppButton } from './components/WhatsAppButton';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -52,6 +53,7 @@ function App() {
       <Header currentPage={currentPage} onNavigate={handleNavigate} />
       <main>{renderPage()}</main>
       <Footer onNavigate={handleNavigate} />
+      <WhatsAppButton />
     </div>
   );
 }
