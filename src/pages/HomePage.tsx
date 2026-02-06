@@ -29,24 +29,31 @@ const featuredTreatments: Treatment[] = [
 
   {
     id: '1',
-    name: 'Massage Suédois',
-    description: 'Un massage classique de relaxation utilisant de longs mouvements fluides pour soulager les tensions et favoriser une détente profonde.',
+    name: 'Soin de visage',
+    description: 'Un soin essentiel pour purifier la peau et éliminer toutes les impuretés. Ce soin est adapté à chaque type de peau (grasse, sèche, mixte, etc.)',
     duration: '60 minutes',
-    image_url: 'https://images.pexels.com/photos/3757952/pexels-photo-3757952.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image_url: 'https://i.pinimg.com/736x/6d/8a/d2/6d8ad269a71d1a2119263368bf362957.jpg?auto=compress&cs=tinysrgb&w=800',
   },
   {
     id: '2',
-    name: 'Soin du visage à l\'aromathérapie',
-    description: 'Soin du visage luxueux utilisant des huiles essentielles pour rajeunir et nourrir votre peau.',
+    name: 'Hammam & Sauna',
+    description: 'Hammam traditionnel à Casa Venez vous ressourcer dans une ambiance relaxante et découvrir nos rituels spa ancestraux les Bains du ciel.',
     duration: '75 minutes',
-    image_url: 'https://images.pexels.com/photos/3764013/pexels-photo-3764013.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image_url: 'https://i.pinimg.com/736x/50/60/8a/50608a75675ab52ceb19392f97949937.jpg?auto=compress&cs=tinysrgb&w=800',
   },
   {
     id: '3',
-    name: 'Thérapie aux pierres chaudes',
-    description: 'Des pierres basaltiques chauffées placées sur des points clés pour dissoudre le stress et favoriser la circulation.',
+    name: 'Massages',
+    description: 'Le massage a nombreux bienfait. il soulage les tensions, le stress et le doleurs musculaires.',
     duration: '90 minutes',
-    image_url: 'https://images.pexels.com/photos/3188/love-romantic-bath-candlelight.jpg?auto=compress&cs=tinysrgb&w=800',
+    image_url: 'https://ciel-spa.ma/wp-content/uploads/2023/01/6144579687284736.jpg?auto=compress&cs=tinysrgb&w=800',
+  },
+  {
+    id: '4',
+    name: `Soins`,
+    description: `Les années d'expérience que nous mettons à votre disposition, avec la haute qualité des produits utilisés,`,
+    duration: '90 minutes',
+    image_url: 'https://ciel-spa.ma/wp-content/uploads/2023/01/pexels-polina-tankilevitch-3738348-1536x1024.jpg?auto=compress&cs=tinysrgb&w=800',
   },
 ];
 
@@ -76,9 +83,9 @@ const popularPackages: Package[] = [
 
 const services: Service[] = [{
   id: '1',
-  name: 'Massage Thérapeutique',
-  description: 'Du massage suédois au massage en profondeur, nos thérapeutes experts adaptent chaque séance à vos besoins.',
-  image_url: 'https://images.pexels.com/photos/5240677/pexels-photo-5240677.jpeg?auto=compress&cs=tinysrgb&w=800',
+  name: 'Épilation définitive',
+  description: 'Une méthode de plus en plus populaire, offrant une solution à long terme pour se débarrasser des poils. Le laser cible le follicule pileux pour empêcher la repousse des poils de manière permanente.',
+  image_url: 'https://i.pinimg.com/736x/ee/f2/54/eef254038c8e40094b48ec8398bc71b2.jpg?auto=compress&cs=tinysrgb&w=800',
   slug: 'massage-therapy',
 },
 
@@ -91,9 +98,9 @@ const services: Service[] = [{
 },
 {
   id: '3',
-  name: 'Soins du Corps',
-  description: 'Enveloppements luxueux, gommages et hydrothérapie pour détoxifier et nourrir votre corps.',
-  image_url: 'https://i.pinimg.com/736x/05/20/34/052034d4e91e0215a30b4b900792cb56.jpg?auto=compress&cs=tinysrgb&w=800',
+  name: 'HIFU',
+  description: `Le HIFU est une technologie de pointe qui utilise des ultrasons focalisés pour stimuler la production de collagène et d'élastine dans la peau, ce qui entraîne un raffermissement visible de la peau et une réduction des signes de l'âge.`,
+  image_url: 'https://i.pinimg.com/736x/6f/07/f7/6f07f7c16c88f632eeb970faaea7ce39.jpg?auto=compress&cs=tinysrgb&w=800',
   slug: 'body-treatments',
 },
 ];
@@ -115,9 +122,9 @@ export default function HomePage({ onNavigate, onNavigateService }: HomePageProp
         }}
       >
         <div className="text-center text-white px-4">
-          <h1 className="text-5xl md:text-7xl font-serif mb-6"> Redéfinir la détente</h1>
+          <h1 className="text-5xl md:text-7xl font-serif mb-6">MIRICLINIC SPA CENTRE</h1>
           <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto leading-relaxed">
-            Plongez dans un sanctuaire de tranquillité où chaque détail est pensé pour votre bien-être
+            Votre détente notre passion, notre spa est dédié à inspirer une vie équilibrée et un esprit sain.
           </p>
           <button
             onClick={() => onNavigate('contact')}
@@ -128,12 +135,42 @@ export default function HomePage({ onNavigate, onNavigateService }: HomePageProp
         </div>
       </section>
 
+
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-serif text-amber-900 mb-6">Notre Philosophie du Bien-être</h2>
+              <p className="text-gray-700 leading-relaxed mb-4">
+                Chez Serenity Spa, nous croyons que le véritable bien-être naît de l'harmonie parfaite entre l'esprit, le corps et l'âme. Notre approche holistique combine les traditions anciennes de guérison avec des techniques thérapeutiques modernes.
+              </p>
+              <p className="text-gray-700 leading-relaxed mb-6">
+                Chaque soin est conçu avec soin non seulement pour détendre votre corps, mais aussi pour revitaliser votre être tout entier,
+                vous laissant rafraîchi et renouvelé.
+              </p>
+              <button
+                onClick={() => onNavigate('about')}
+                className="inline-flex items-center gap-2 bg-amber-800 text-white px-6 py-3 rounded-md hover:bg-amber-900 transition-colors"
+              >
+                En savoir plus
+                <ArrowRight className="w-5 h-5" />
+              </button>
+            </div>
+            <div
+              className="h-96 bg-cover bg-center rounded-lg shadow-lg"
+              style={{
+                backgroundImage: `url(${ImageMiriClinic})`,
+              }}
+            />
+          </div>
+        </div>
+      </section>
       <section className="py-20 bg-stone-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-serif text-amber-900 mb-4">Notre Philosophie du Bien-être</h2>
+            <h2 className="text-4xl font-serif text-amber-900 mb-4">Nos Services</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Chez Serenity Spa, nous croyons que le véritable bien-être naît de l'harmonie parfaite entre l'esprit, le corps et l'âme. Notre approche holistique combine les traditions anciennes de guérison avec des techniques thérapeutiques modernes.
+              Découvrez notre large gamme de soins professionnels de spa et de bien-être.
             </p>
           </div>
 
@@ -163,36 +200,6 @@ export default function HomePage({ onNavigate, onNavigateService }: HomePageProp
               Voir tous les soins
               <ArrowRight className="w-5 h-5" />
             </button>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-serif text-amber-900 mb-6">Notre Philosophie du Bien-être</h2>
-              <p className="text-gray-700 leading-relaxed mb-4">
-                Chez Serenity Spa, nous croyons que le véritable bien-être naît de l'harmonie parfaite entre l'esprit, le corps et l'âme. Notre approche holistique combine les traditions anciennes de guérison avec des techniques thérapeutiques modernes.
-              </p>
-              <p className="text-gray-700 leading-relaxed mb-6">
-                Chaque soin est conçu avec soin non seulement pour détendre votre corps, mais aussi pour revitaliser votre être tout entier,
-                vous laissant rafraîchi et renouvelé.
-              </p>
-              <button
-                onClick={() => onNavigate('about')}
-                className="inline-flex items-center gap-2 bg-amber-800 text-white px-6 py-3 rounded-md hover:bg-amber-900 transition-colors"
-              >
-                En savoir plus
-                <ArrowRight className="w-5 h-5" />
-              </button>
-            </div>
-            <div
-              className="h-96 bg-cover bg-center rounded-lg shadow-lg"
-              style={{
-                backgroundImage: `url(${ImageMiriClinic})`,
-              }}
-            />
           </div>
         </div>
       </section>

@@ -34,9 +34,11 @@ export default function AboutPage() {
         }}
       >
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-6xl font-serif text-white mb-6">Our Story</h1>
+          <h1 className="text-5xl md:text-6xl font-serif text-white mb-6">À PROPOS
+            La mission du réseau de clinique Marocaine smartclinic</h1>
           <p className="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
-            A sanctuary where ancient wisdom meets modern luxury
+
+
           </p>
         </div>
       </section>
@@ -45,10 +47,9 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <p className="text-lg text-gray-700 leading-relaxed mb-6">
-              Founded with a vision to create an oasis of tranquility in the heart of the city, Serenity Spa has been
-              a beacon of wellness and rejuvenation for over a decade. Our journey began with a simple belief: that
-              everyone deserves a sanctuary where they can escape the demands of modern life and reconnect with their
-              inner peace.
+              Est d’éduquer ses patients aux meilleures pratiques en matière de santé et beauté cutanée et de leur prodiguer les soins de rajeunissement sans chirurgie les plus novateurs offrant des résultats visibles et naturels.
+              L’approche holistique de SMARTCLINIC combine technologie de pointe, produits topiques et suppléments nutritionnels, pour prévenir et contrer les signes de vieillissement cutanés. Son équipe, composé de médecins et d’un éventail de professionnels expérimentés, utilise des protocoles uniques et standardisés pour améliorer tous les aspects de la peau du visage et du corps – tant en prévention qu’en correction – et ainsi entraîner la peau à rester saine et belle.
+              Forte de ses valeurs de bienveillance, de respect, d’entraide et de courage auxquelles elle donne vie au quotidien, l’équipe de SMARTCLINIC agit en ayant à cœur le bien-être de ses patients et la satisfaction de leurs besoins. L’écoute active, la communication, la cohésion et l’honnêteté façonnent, dans chaque action et décision, la culture d’entreprise et l’expérience uniques à smartclinic.
             </p>
             <p className="text-lg text-gray-700 leading-relaxed mb-6">
               From our humble beginnings, we have grown into a trusted destination for those seeking authentic
